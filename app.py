@@ -16,8 +16,8 @@ os.environ["PINECONE_INDEX_NAME"] = st.secrets["PINECONE_INDEX_NAME"]
 os.environ["PINECONE_ENVIRONMENT"] = st.secrets["PINECONE_ENVIRONMENT"]
 os.environ["PINECONE_NAME_SPACE"] = st.secrets["PINECONE_NAME_SPACE"]
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
-INDEX_NAME = os.environ["PINECONE_INDEX_NAME"]
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+INDEX_NAME = st.secrets["PINECONE_INDEX_NAME"]
 
 def get_vectorstore_openAI():
     embeddings = OpenAIEmbeddings()
@@ -42,7 +42,7 @@ def handle_userinput(user_question):
         st.write(message.content)
 
 def main():
-    openai.api_key = os.environ["OPENAI_API_KEY"]
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
 
     # Set up page settings
     st.set_page_config(page_title="Chat With Mindstuck PDFs", page_icon=":books:")
