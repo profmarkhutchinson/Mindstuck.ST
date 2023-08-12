@@ -46,7 +46,7 @@ def main():
 
     # Set up page settings
     st.set_page_config(page_title="Chat With Mindstuck", page_icon=":books:")
-    st.header("Chat based on the Mindstuck 📚")
+    st.header("Chat based on the Mindstuck book my Michael McQueen 📚")
 
     # Set up session states
     if "conversation" not in st.session_state:
