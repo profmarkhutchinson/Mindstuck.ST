@@ -15,6 +15,7 @@ os.environ["PINECONE_API_KEY"] = st.secrets["PINECONE_API_KEY"]
 os.environ["PINECONE_INDEX_NAME"] = st.secrets["PINECONE_INDEX_NAME"]
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
+INDEX_NAME = os.environ["PINECONE_INDEX_NAME"]
 
 def get_vectorstore_openAI():
     embeddings = OpenAIEmbeddings()
