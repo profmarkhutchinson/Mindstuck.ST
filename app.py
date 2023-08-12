@@ -13,6 +13,8 @@ import os
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 os.environ["PINECONE_API_KEY"] = st.secrets["PINECONE_API_KEY"]
 os.environ["PINECONE_INDEX_NAME"] = st.secrets["PINECONE_INDEX_NAME"]
+os.environ["PINECONE_ENVIRONMENT"] = st.secrets["PINECONE_ENVIRONMENT"]
+os.environ["PINECONE_NAME_SPACE"] = st.secrets["PINECONE_NAME_SPACE"]
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 INDEX_NAME = os.environ["PINECONE_INDEX_NAME"]
