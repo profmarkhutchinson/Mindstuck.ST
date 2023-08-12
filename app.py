@@ -45,8 +45,8 @@ def main():
     openai.api_key = st.secrets["OPENAI_API_KEY"]
 
     # Set up page settings
-    st.set_page_config(page_title="Chat With Mindstuck PDFs", page_icon=":books:")
-    st.header("Chat based on the Mindstuck PDFs 📚")
+    st.set_page_config(page_title="Chat With Mindstuck", page_icon=":books:")
+    st.header("Chat based on the Mindstuck 📚")
 
     # Set up session states
     if "conversation" not in st.session_state:
@@ -54,14 +54,14 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
-    user_question = st.text_input("Ask a question about the Mindstuck documents:")
+    user_question = st.text_input("Ask a question about the Mindstuck:")
 
     if user_question:
         handle_userinput(user_question)
 
     with st.sidebar:
         st.subheader("Information")
-        st.write("Here you can converse with the data extracted from the Mindstuck PDFs using OpenAI and Pinecone.")
+        st.write("Here you can converse with the brillance of Michael McQueen in the Mindstuck chatbot.")
 
 if __name__ == '__main__':
     main()
