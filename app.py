@@ -39,7 +39,7 @@ def handle_userinput(user_question):
         st.write(message.content)
 
 def main():
-    openai.api_key = OPENAI_API_KEY
+    openai.api_key = os.environ["OPENAI_API_KEY"]
 
     # Set up page settings
     st.set_page_config(page_title="Chat With Mindstuck PDFs", page_icon=":books:")
