@@ -58,7 +58,7 @@ def handle_userinput(user_question, index):
         embeddings = OpenAIEmbeddings(model_kwargs={"api_key": OPENAI_API_KEY})
         sample_vector = embeddings.embed_documents([user_question])[0]
         
-        pinecone_response = index.query(namespace=PINECONE_NAME_SPACE, vector=sample_vector, top_k=3, include_values=False, include_metadata=True)
+        pinecone_response = index.query(namespace=st.secrets["PINECONE_NAME_SPACE"], vector=sample_vector, top_k=3, include_values=False, include_metadata=True)
         
         metadata_and_sources = [match['metadata'] for match in pinecone_response.get('matches', [])]
     except Exception as e:
@@ -95,8 +95,8 @@ def main():
     st.header("Chat with Mindstuck 📚")
 
     try:
-        embeddings = OpenAIEmbeddings(model_kwargs={"api_key": OPENAI_API_KEY})
-        index = pinecone.Index(index_name=PINECONE_INDEX_NAME)
+        embeddings = OpenAIEmbeddings(api_key=st.secrets["OPENAI_API_KEY"])
+        index = pinecone.Index(index_name=st.secrets["PINECONE_INDEX_NAME"])
     except Exception as e:
         st.error(f"Error connecting to Pinecone index: {e}")
         return
