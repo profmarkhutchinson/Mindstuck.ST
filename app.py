@@ -32,7 +32,7 @@ SYSTEM_MESSAGE = ("You are a talented professional mentor and coach providing as
 
 
 def get_vectorstore_openAI():
-    embeddings = OpenAIEmbeddings(model_kwargs={"api_key": OPENAI_API_KEY})
+    embeddings = OpenAIEmbeddings()
     vectorstore = Pinecone.from_existing_index(index_name=PINECONE_INDEX_NAME, embedding=embeddings)
     return vectorstore
 
