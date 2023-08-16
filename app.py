@@ -32,7 +32,7 @@ SYSTEM_MESSAGE = ("You are a talented professional mentor and coach providing as
 
 
 def get_vectorstore_openAI():
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(model_kwargs={"api_key": OPENAI_API_KEY})
     vectorstore = Pinecone.from_existing_index(index_name=PINECONE_INDEX_NAME, embedding=embeddings)
     return vectorstore
 
@@ -89,7 +89,7 @@ def setup_pinecone():
 setup_pinecone()
 
 def main():
-    openai.api_key = OPENAI_API_KEY
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
 
     st.set_page_config(page_title="Chat With Michael McQueen's Mindstuck", page_icon=":books:", layout="centered", initial_sidebar_state='collapsed')
     st.header("Chat with Mindstuck 📚")
