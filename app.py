@@ -32,8 +32,8 @@ SYSTEM_MESSAGE = ("You are a talented professional mentor and coach providing as
 
 
 def get_vectorstore_openAI():
-    embeddings = OpenAIEmbeddings(model_kwargs={"api_key": OPENAI_API_KEY})
-    vectorstore = Pinecone.from_existing_index(index_name=PINECONE_INDEX_NAME, embedding=embeddings)
+    embeddings = OpenAIEmbeddings(api_key = st.secrets["OPENAI_API_KEY"])
+    vectorstore = Pinecone.from_existing_index(index_name=st.secrets["PINECONE_INDEX_NAME"], embedding=embeddings)
     return vectorstore
 
 def get_conversation_chain(vectorstore, system_message=SYSTEM_MESSAGE):
@@ -55,7 +55,7 @@ def handle_userinput(user_question, index):
     st.session_state.chat_history = response['chat_history']
 
     try:
-        embeddings = OpenAIEmbeddings(model_kwargs={"api_key": OPENAI_API_KEY})
+        embeddings = OpenAIEmbeddings(api_key = st.secrets["OPENAI_API_KEY"])
         sample_vector = embeddings.embed_documents([user_question])[0]
         
         pinecone_response = index.query(namespace=st.secrets["PINECONE_NAME_SPACE"], vector=sample_vector, top_k=3, include_values=False, include_metadata=True)
