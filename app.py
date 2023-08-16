@@ -1,12 +1,15 @@
 import streamlit as st
 import openai
 import toml
+import pinecone
 from langchain.docstore.document import Document
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
+from langchain.schema import SystemMessage
+
 #from icecream import ic
 import os
 
@@ -78,8 +81,8 @@ def handle_userinput(user_question, index):
 
 def setup_pinecone():
     pinecone.init(
-        api_key=PINECONE_API_KEY,
-        environment=PINECONE_ENVIRONMENT,
+        api_key=st.secrets["PINECONE_API_KEY"],
+        environment=st.secrets["PINECONE_ENVIRONMENT"],
     )
     existing_indexes = pinecone.list_indexes()
 
